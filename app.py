@@ -2,6 +2,16 @@ import streamlit as st
 import pickle
 import os
 
+# Check for required packages
+try:
+    import sklearn
+
+    SKLEARN_AVAILABLE = True
+except ImportError:
+    SKLEARN_AVAILABLE = False
+    st.error("❌ scikit-learn is not installed. Please add 'scikit-learn' to your requirements.txt file.")
+    st.stop()
+
 # Try importing deep_translator, fall back to no translation if unavailable
 try:
     from deep_translator import GoogleTranslator
@@ -9,7 +19,7 @@ try:
     TRANSLATION_AVAILABLE = True
 except ImportError:
     TRANSLATION_AVAILABLE = False
-    st.warning("Translation functionality is not available. Please ensure 'deep-translator' is installed.")
+    st.warning("⚠️ Translation functionality is not available. Install 'deep-translator' for multilingual support.")
 
 
 # Load models with proper error handling
