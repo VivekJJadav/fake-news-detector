@@ -1,6 +1,5 @@
 import streamlit as st
 import pickle
-import os
 
 # Check for required packages
 try:
@@ -96,7 +95,7 @@ demo_articles = {
 selected_demo = st.selectbox("Choose a demo input:", list(demo_articles.keys()))
 demo = demo_articles[selected_demo]
 
-st.subheader("OR try another article")
+st.subheader("OR try another article in any language")
 
 # Input fields
 title = st.text_input("📰 Headline", value=demo['title'])
@@ -117,6 +116,7 @@ if st.button("Analyze", type="primary"):
             # Show translation info if text was translated
             if TRANSLATION_AVAILABLE and translated_text != full_text:
                 st.info("🌐 Text was translated to English for analysis.")
+                st.text_area("Translated Text: ", translated_text)
 
             try:
                 # Vectorize the text
