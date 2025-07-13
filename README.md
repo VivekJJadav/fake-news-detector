@@ -1,4 +1,4 @@
-# 📰 Fake News Detector
+# 📰 Fake News Detector - [link](https://fake-news-detectorr.streamlit.app/)
 
 A web-based machine learning app that detects whether a news headline or article is **Real** or **Fake** using Natural Language Processing and Logistic Regression. Built with Python, Scikit-learn, and Streamlit.
 
@@ -58,3 +58,4 @@ Example:
     “NASA confirms discovery of Earth-like planet in habitable zone of nearby star.”
     “Aliens endorse presidential candidate during secret UN meeting.”
     “Cows in Gujarat spotted using smartphones to trade cryptocurrency.”
+
