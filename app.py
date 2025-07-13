@@ -1,6 +1,5 @@
 import streamlit as st
 import pickle
-from deep_translator import GoogleTranslator
 
 model = pickle.load(open('logistic_model.pkl', 'rb'))
 vectorizer = pickle.load(open('tfidf_vectorizer.pkl', 'rb'))
@@ -10,8 +9,24 @@ st.title("📰 Fake News Detector")
 st.write("Enter a news headline or article below, and the model will predict whether it's **Real** or **Fake**.")
 
 
+try:
+    from deep_translator import GoogleTranslator
+    TRANSLATION_AVAILABLE = True
+except ImportError:
+    from deep_translator import GoogleTranslator
+    TRANSLATION_AVAILABLE = False
+    st.warning("Translation functionality is not available. Please ensure 'deep-translator' is installed.")
+
+
 def translate_to_english(text):
-    return GoogleTranslator(source='auto', target='en').translate(text)
+    if TRANSLATION_AVAILABLE:
+        try:
+            return GoogleTranslator(source='auto', target='en').translate(text)
+        except Exception as e:
+            st.warning(f"Translation failed: {e}. Using original text.")
+            return text
+    else:
+        return text
 
 
 st.subheader("🧪 Try a Demo News Article")
